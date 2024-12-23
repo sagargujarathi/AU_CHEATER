@@ -1,4 +1,10 @@
 {
   "name": "AU CHEATER",
-  "version": 1
+  "version": "1.0",
+  "manifest_version": 3,
+  "description": "An extension to tamper with portals",
+
+  "action": {
+    "default_popup": "/src/pop-up/index.html"
+  }
 }
