@@ -1,0 +1,163 @@
+{
+  "exam_details": {
+    "id": "m4zd4a57",
+    "name": "22-Dec-2024_Test-02",
+    "duration": 30,
+    "exam_type": "single",
+    "cutoff_type": "single",
+    "is_linear": 0,
+    "proctoring": 0,
+    "restrict_tab_switch": 1,
+    "tab_switch_count": 5,
+    "tab_switch_warning": 1,
+    "duration_left": 1758
+  },
+  "exam_models": [
+    {
+      "id": "m4zd4a5a",
+      "model_name": "MCQ",
+      "ques_count": 20,
+      "duration": 0,
+      "questions": [
+        {
+          "id": "m4p523nu",
+          "type": "single_option",
+          "positive_mark": 1,
+          "negative_mark": 0,
+          "options": [
+            {
+              "id": "option_1",
+              "option": "<p><code>rs.last()</code></p>"
+            },
+            {
+              "id": "option_2",
+              "option": "<p><code>rs.end()</code></p>"
+            },
+            {
+              "id": "option_3",
+              "option": "<p><code>rs.moveToLast()</code></p>"
+            },
+            {
+              "id": "option_4",
+              "option": "<p><code>rs.previous()</code></p>"
+            },
+            {
+              "id": "option_5",
+              "option": "<p><code>rs.close()</code></p>"
+            }
+          ],
+          "question_type": "text_questions",
+          "student_answer": null,
+          "time_spent": 0,
+          "marked_for_review": null,
+          "chapter_id": "m4p4vce9",
+          "paragraph_id": null,
+          "difficulty": "medium",
+          "reference": "null",
+          "question": "<p>Which method is used to move the cursor to the last row of a <code>ResultSet</code> object?</p>",
+          "question_image": null,
+          "num_options": 0,
+          "option_1": "<p><code>rs.last()</code></p>",
+          "option_1_image": null,
+          "option_1_partial": null,
+          "option_2": "<p><code>rs.end()</code></p>",
+          "option_2_image": null,
+          "option_2_partial": null,
+          "option_3": "<p><code>rs.moveToLast()</code></p>",
+          "option_3_image": null,
+          "option_3_partial": null,
+          "option_4": "<p><code>rs.previous()</code></p>",
+          "option_4_image": null,
+          "option_4_partial": null,
+          "option_5": "<p><code>rs.close()</code></p>",
+          "option_5_image": null,
+          "option_5_partial": null,
+          "explanation": "<p>The <code>ResultSet.last()</code> method moves the cursor to the last row of the result set if the result set type supports it (e.g., <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>).</p>",
+          "explanation_image": null,
+          "user_id": "l3x8r46u",
+          "user_role": "institutions",
+          "verified_by": null,
+          "verify_role": null,
+          "verified": 0,
+          "verified_difficulty": null,
+          "created_at": "2024-12-15T05:01:29.000Z",
+          "updated_at": "2024-12-15T05:01:29.000Z"
+        },
+        {
+          "id": "m4p58r47",
+          "type": "single_option",
+          "positive_mark": 1,
+          "negative_mark": 0,
+          "options": [
+            {
+              "id": "option_1",
+              "option": "<p>Compilation error</p>"
+            },
+            {
+              "id": "option_2",
+              "option": "<p>No products found.</p>"
+            },
+            {
+              "id": "option_3",
+              "option": "<p>Products found.</p>"
+            },
+            {
+              "id": "option_4",
+              "option": "<p>Runtime error</p>"
+            },
+            {
+              "id": "option_5",
+              "option": "<p>None of the above</p>"
+            }
+          ],
+          "question_type": "text_questions",
+          "student_answer": null,
+          "time_spent": 0,
+          "marked_for_review": null,
+          "chapter_id": "m4p4vce9",
+          "paragraph_id": null,
+          "difficulty": "medium",
+          "reference": "null",
+          "question": "<p>What will the following code output?</p>\r\n<pre class=\"language-java\"><code>String sql = \"SELECT * FROM products WHERE price &gt; ? AND category = ?\";  \r\nPreparedStatement pstmt = con.prepareStatement(sql);  \r\npstmt.setDouble(1, 50.0);  \r\npstmt.setString(2, \"Electronics\");  \r\nResultSet rs = pstmt.executeQuery();  \r\nif (!rs.next()) {  \r\n    System.out.println(\"No products found.\");  \r\n} else {  \r\n    System.out.println(\"Products found.\");  \r\n}\r\n</code></pre>",
+          "question_image": null,
+          "num_options": 0,
+          "option_1": "<p>Compilation error</p>",
+          "option_1_image": null,
+          "option_1_partial": null,
+          "option_2": "<p>No products found.</p>",
+          "option_2_image": null,
+          "option_2_partial": null,
+          "option_3": "<p>Products found.</p>",
+          "option_3_image": null,
+          "option_3_partial": null,
+          "option_4": "<p>Runtime error</p>",
+          "option_4_image": null,
+          "option_4_partial": null,
+          "option_5": "<p>None of the above</p>",
+          "option_5_image": null,
+          "option_5_partial": null,
+          "explanation": "<p>The output depends on the database contents. If there are products matching the query, it prints <code>Products found.</code> Otherwise, it prints <code>No products found.</code></p>",
+          "explanation_image": null,
+          "user_id": "l3x8r46u",
+          "user_role": "institutions",
+          "verified_by": null,
+          "verify_role": null,
+          "verified": 0,
+          "verified_difficulty": null,
+          "created_at": "2024-12-15T05:06:40.000Z",
+          "updated_at": "2024-12-15T05:06:40.000Z"
+        }
+      ]
+    }
+  ],
+  "student_exam": {
+    "attempt_id": "f8c84110-cee9-462d-808f-0c62583bbf5a",
+    "exam_id": "m4zd4a57",
+    "exam_name": "22-Dec-2024_Test-02",
+    "status": "in_progress",
+    "current_model": null,
+    "current_question": null,
+    "proctoring": 0,
+    "tab_switch": 0
+  }
+}
