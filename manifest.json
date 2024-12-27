@@ -1,0 +1,34 @@
+{
+  "name": "AU Cheater",
+  "manifest_version": 3,
+  "version": "1.0.0",
+  "permissions": ["storage", "declarativeNetRequest", "scripting"],
+
+  "icons": {
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+
+  "action": {
+    "default_popup": "index.html"
+  },
+
+  "content_scripts": [
+    {
+      "js": ["src/content/index.ts"],
+      "matches": ["https://*.instacks.co/assessments/attempt/*"]
+    }
+  ],
+
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "block_rules",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  }
+}
+
+

@@ -1,0 +1,215 @@
+{
+  "exam_details": {
+    "id": "m3cn1vw4",
+    "name": "QAR Practice",
+    "duration": 220,
+    "exam_type": "single",
+    "cutoff_type": "single",
+    "is_linear": 0,
+    "proctoring": 0,
+    "restrict_tab_switch": 0,
+    "tab_switch_count": 0,
+    "tab_switch_warning": 1,
+    "duration_left": 13130
+  },
+  "exam_models": [
+    {
+      "id": "m3cn1vw7",
+      "model_name": "QAR_Practice",
+      "ques_count": 200,
+      "duration": 0,
+      "questions": [
+        {
+          "id": "l5v2jwge",
+          "type": "single_option",
+          "positive_mark": 1,
+          "negative_mark": 0,
+          "options": [
+            {
+              "id": "option_1",
+              "option": "<p>9:15</p>"
+            },
+            {
+              "id": "option_2",
+              "option": "<p>9:45</p>"
+            },
+            {
+              "id": "option_3",
+              "option": "<p>9:55</p>"
+            },
+            {
+              "id": "option_4",
+              "option": "<p>9:05</p>"
+            }
+          ],
+          "question_type": "text_questions",
+          "student_answer": null,
+          "time_spent": 0,
+          "marked_for_review": null,
+          "chapter_id": "l5uunhji",
+          "paragraph_id": null,
+          "difficulty": "easy",
+          "reference": "Clock_05",
+          "question": "<p>If mirror shows 2:15 in a clock, then what will be actual timing?</p>",
+          "question_image": null,
+          "num_options": 0,
+          "option_1": "<p>9:15</p>",
+          "option_1_image": null,
+          "option_1_partial": null,
+          "option_2": "<p>9:45</p>",
+          "option_2_image": null,
+          "option_2_partial": null,
+          "option_3": "<p>9:55</p>",
+          "option_3_image": null,
+          "option_3_partial": null,
+          "option_4": "<p>9:05</p>",
+          "option_4_image": null,
+          "option_4_partial": null,
+          "option_5": null,
+          "option_5_image": null,
+          "option_5_partial": null,
+          "explanation": "<p>For every mirror image based on a clock,<br />If it is 12 hours clock, then subtract given timing from 11:60 hrs,<br />And if it is 24 hrs clock, then subtract given timing from 23:60 hrs.<br />Here, it is 12 - hr clock, hence,<br />11:60 &ndash; 2:15 = 9:45</p>",
+          "explanation_image": null,
+          "user_id": "1",
+          "user_role": "superadmin",
+          "verified_by": null,
+          "verify_role": null,
+          "verified": 1,
+          "verified_difficulty": null,
+          "created_at": "2022-07-21T13:28:16.000Z",
+          "updated_at": "2023-03-03T16:50:49.000Z"
+        },
+        {
+          "id": "l5ldj6gm",
+          "type": "single_option",
+          "positive_mark": 1,
+          "negative_mark": 0,
+          "options": [
+            {
+              "id": "option_1",
+              "option": "<p>56</p>"
+            },
+            {
+              "id": "option_2",
+              "option": "<p>68</p>"
+            },
+            {
+              "id": "option_3",
+              "option": "<p>72</p>"
+            },
+            {
+              "id": "option_4",
+              "option": "<p>76</p>"
+            }
+          ],
+          "question_type": "text_questions",
+          "student_answer": null,
+          "time_spent": 0,
+          "marked_for_review": null,
+          "chapter_id": "l5lcbz3g",
+          "paragraph_id": null,
+          "difficulty": "medium",
+          "reference": "D-09",
+          "question": "<p>In a certain code &lsquo;PLANT&rsquo; = 63, &lsquo;LEAF&rsquo; =24, then &lsquo;ROOT&rsquo; will be?</p>",
+          "question_image": null,
+          "num_options": 0,
+          "option_1": "<p>56</p>",
+          "option_1_image": null,
+          "option_1_partial": null,
+          "option_2": "<p>68</p>",
+          "option_2_image": null,
+          "option_2_partial": null,
+          "option_3": "<p>72</p>",
+          "option_3_image": null,
+          "option_3_partial": null,
+          "option_4": "<p>76</p>",
+          "option_4_image": null,
+          "option_4_partial": null,
+          "option_5": null,
+          "option_5_image": null,
+          "option_5_partial": null,
+          "explanation": "<p>Solution:</p>",
+          "explanation_image": "/uploads/questions/l5ldj6gn.PNG",
+          "user_id": "1",
+          "user_role": "superadmin",
+          "verified_by": null,
+          "verify_role": null,
+          "verified": 1,
+          "verified_difficulty": null,
+          "created_at": "2022-07-14T18:37:57.000Z",
+          "updated_at": "2023-02-13T12:31:13.000Z"
+        },
+        {
+          "id": "l5xzkvv6",
+          "type": "single_option",
+          "positive_mark": 1,
+          "negative_mark": 0,
+          "options": [
+            {
+              "id": "option_1",
+              "option": "<p>East</p>"
+            },
+            {
+              "id": "option_2",
+              "option": "<p>West</p>"
+            },
+            {
+              "id": "option_3",
+              "option": "<p>South</p>"
+            },
+            {
+              "id": "option_4",
+              "option": "<p>North</p>"
+            }
+          ],
+          "question_type": "text_questions",
+          "student_answer": null,
+          "time_spent": 0,
+          "marked_for_review": null,
+          "chapter_id": "l5xzfu6w",
+          "paragraph_id": null,
+          "difficulty": "easy",
+          "reference": "D-03",
+          "question": "<p>If South-East becomes North, then what will North-West be?</p>",
+          "question_image": null,
+          "num_options": 0,
+          "option_1": "<p>East</p>",
+          "option_1_image": null,
+          "option_1_partial": null,
+          "option_2": "<p>West</p>",
+          "option_2_image": null,
+          "option_2_partial": null,
+          "option_3": "<p>South</p>",
+          "option_3_image": null,
+          "option_3_partial": null,
+          "option_4": "<p>North</p>",
+          "option_4_image": null,
+          "option_4_partial": null,
+          "option_5": null,
+          "option_5_image": null,
+          "option_5_partial": null,
+          "explanation": "<p>The diagrammatic representation of direction is as shown below</p>",
+          "explanation_image": "/uploads/questions/l5xzkvv7.PNG",
+          "user_id": "1",
+          "user_role": "superadmin",
+          "verified_by": null,
+          "verify_role": null,
+          "verified": 1,
+          "verified_difficulty": null,
+          "created_at": "2022-07-23T14:28:22.000Z",
+          "updated_at": "2023-03-03T16:24:00.000Z"
+        }
+      ]
+    }
+  ],
+  "student_exam": {
+    "attempt_id": "e62b3176-9d0f-4615-9c2f-332d56778af8",
+    "exam_id": "m3cn1vw4",
+    "exam_name": "QAR Practice",
+    "status": "in_progress",
+    "current_model": null,
+    "current_question": null,
+    "proctoring": 0,
+    "tab_switch": 4
+  }
+}

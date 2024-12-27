@@ -1,0 +1,39 @@
+{
+  "name": "chrome-extension",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "prettier": "prettier . --write"
+  },
+  "dependencies": {
+    "@crxjs/vite-plugin": "^2.0.0-beta.28",
+    "chrome-types": "^0.1.319",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+     "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@hookform/resolvers": "^3.9.1",
+    "@mui/lab": "^6.0.0-beta.21",
+    "@mui/material": "^6.3.0",
+    "@types/chrome": "^0.0.287",
+    "axios": "^1.7.9",
+    "react-hook-form": "^7.54.2",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "eslint": "^9.13.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.14",
+    "prettier": "^3.3.3",
+    "vite": "^5.4.10"
+  }
+}
