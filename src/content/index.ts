@@ -1,9 +1,5 @@
-import {
-  extractDataFromUrl,
-  generateAnswer,
-  getExamDetails,
-  getLocalStorageData,
-} from "@/helpers";
+import { KEY_TYPES } from "@/constants";
+import { extractDataFromUrl, generateAnswer, getExamDetails } from "@/helpers";
 
 let PROMPT_DETAILS = {
   isGenerated: false,
@@ -15,7 +11,10 @@ let PROMPT_DETAILS = {
 const loadScripts = async () => {
   const { BASE_URL, ATTEMPT_ID } = extractDataFromUrl();
 
-  const CONFIGURATION_DATA = await getLocalStorageData();
+  const CONFIGURATION_DATA = await chrome.storage.local.get([
+    KEY_TYPES.GENERATE_KEY,
+    KEY_TYPES.AUTO_SELECT_KEY,
+  ]);
 
   const EXAM_DATA = await getExamDetails(BASE_URL, ATTEMPT_ID);
 
@@ -45,7 +44,6 @@ const loadScripts = async () => {
       console.log("QUESTION NUMBER: ", questionNumber);
 
       const option = await generateAnswer(
-        CONFIGURATION_DATA.SECRET_KEY,
         EXAM_DATA.find((item) => item.name === section)?.questions?.[
           questionNumber - 1
         ] || {}
@@ -79,44 +77,63 @@ const loadScripts = async () => {
   });
 };
 
-document.body.onselectstart = null;
-document.onselectstart = null;
+const initListeners = () => {
+  console.log("URL UPDATE DETECTED");
 
-document.body.oncopy = null;
-document.body.oncut = null;
+  const documentBody = document.body;
 
-document.body.onpaste = null;
+  documentBody.onselectstart = null;
+  document.onselectstart = null;
 
-document.oncontextmenu = null;
-document.body.oncontextmenu = null;
+  documentBody.oncopy = null;
+  documentBody.oncut = null;
 
-document.onkeydown = null;
-document.body.onkeydown = null;
+  documentBody.onpaste = null;
 
-document.onkeyup = null;
-document.body.onkeyup = null;
+  document.oncontextmenu = null;
+  documentBody.oncontextmenu = null;
 
-const securityScripts = document.querySelector(
-  `script[src="${"https://demo.proctoring.online/sdk/supervisor.js"}"]`
-) as HTMLScriptElement;
-const playerScripts = document.querySelector(
-  `script[src="${"https://player.vimeo.com/api/player.js"}"]`
-) as HTMLScriptElement;
+  document.onkeydown = null;
+  documentBody.onkeydown = null;
 
-const scripts = document.querySelector(
-  `script[src="${"polyfills-es2015.aa74eb7c80e33db4c40e.js"}"]`
-) as HTMLScriptElement;
+  document.onkeyup = null;
+  documentBody.onkeyup = null;
 
-window.onfocus = null;
-document.onfocus = null;
-window.onblur = null;
-document.onblur = null;
-document.onvisibilitychange = null;
-window.onpagehide = null;
-window.onpageshow = null;
+  window.onfocus = null;
+  document.onfocus = null;
 
-securityScripts.remove();
-playerScripts.remove();
-scripts.remove();
+  window.onblur = null;
+  document.onblur = null;
 
-loadScripts();
+  document.onvisibilitychange = null;
+
+  window.onpagehide = null;
+  window.onpageshow = null;
+
+  const securityScripts = document.querySelector(
+    `script[src="${"https://demo.proctoring.online/sdk/supervisor.js"}"]`
+  ) as HTMLScriptElement;
+  const playerScripts = document.querySelector(
+    `script[src="${"https://player.vimeo.com/api/player.js"}"]`
+  ) as HTMLScriptElement;
+
+  const scripts = document.querySelector(
+    `script[src="${"polyfills-es2015.aa74eb7c80e33db4c40e.js"}"]`
+  ) as HTMLScriptElement;
+
+  securityScripts.remove();
+  playerScripts.remove();
+  scripts.remove();
+
+  loadScripts();
+};
+
+let PREVIOUS_HREF = "";
+
+setInterval(() => {
+  if (window.location.href === PREVIOUS_HREF) return;
+
+  PREVIOUS_HREF = window.location.href;
+
+  initListeners();
+}, 500);

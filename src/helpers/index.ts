@@ -1,5 +1,5 @@
-import { INSTACKS_GET_EXAM_DETAILS_API, KEY_TYPES } from "@/constants";
-import { IGetExamDetailsAPIResponseType, IStorageType } from "@/types";
+import { INSTACKS_GET_EXAM_DETAILS_API } from "@/constants";
+import { IGetExamDetailsAPIResponseType } from "@/types";
 import axios from "axios";
 
 const SYSTEM_PROMPT =
@@ -7,7 +7,7 @@ const SYSTEM_PROMPT =
 export const removePTag = (str: string) =>
   str.replace("<p>", "").replace("</p>", "");
 
-export const generateAnswer = async (apiKey: string, questionData: object) => {
+export const generateAnswer = async (questionData: object) => {
   const data = {
     model: "gpt-4o-mini",
     messages: [
@@ -27,23 +27,15 @@ export const generateAnswer = async (apiKey: string, questionData: object) => {
   return response?.data?.choices?.[0]?.message?.content;
 };
 
-export const getLocalStorageData = async () => {
-  const data = (await chrome.storage.local.get([
-    KEY_TYPES.SECRET_KEY,
-    KEY_TYPES.GENERATE_KEY,
-    KEY_TYPES.AUTO_SELECT_KEY,
-  ])) as IStorageType;
-
-  return data;
-};
-
 export const getExamDetails = async (baseUrl: string, attemptId: string) => {
+  const authToken = window.localStorage.getItem("auth_token");
+
   const { data } = await axios.get<IGetExamDetailsAPIResponseType>(
     INSTACKS_GET_EXAM_DETAILS_API.replace("<id>", attemptId).replace(
       "<base_url>",
       baseUrl
     ),
-    { headers: { authentication: window.localStorage.getItem("auth_token") } }
+    { headers: { authentication: authToken } }
   );
 
   return data.exam_models?.map((item) => ({

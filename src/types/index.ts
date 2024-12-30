@@ -1,7 +1,6 @@
 import { KEY_TYPES } from "@/constants";
 
 export interface IStorageType {
-  [KEY_TYPES.SECRET_KEY]: string;
   [KEY_TYPES.GENERATE_KEY]: string;
   [KEY_TYPES.AUTO_SELECT_KEY]: string;
 }
