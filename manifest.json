@@ -2,8 +2,8 @@
   "name": "AU Cheater",
   "manifest_version": 3,
   "version": "1.0.0",
-  "permissions": ["storage", "declarativeNetRequest", "scripting"],
-
+  "permissions": ["storage", "declarativeNetRequest", "scripting", "activeTab"],
+  "host_permissions": ["<all_urls>"],
   "icons": {
     "48": "icon48.png",
     "128": "icon128.png"
