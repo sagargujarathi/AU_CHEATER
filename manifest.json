@@ -1,5 +1,5 @@
 {
-  "name": "AU Cheater",
+  "name": "Instacks Cheater",
   "manifest_version": 3,
   "version": "1.0.0",
   "permissions": ["storage", "declarativeNetRequest", "scripting", "activeTab"],

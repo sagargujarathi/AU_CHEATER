@@ -54,7 +54,7 @@ function Popup() {
         ) : (
           <Stack p={3} gap={3}>
             <Typography variant="h6" mx="auto" fontWeight="800">
-              AU CHEATER
+              INSTACKS CHEATER
             </Typography>
 
             <RHFAutocomplete
