@@ -1,30 +1,35 @@
 import { INSTACKS_GET_EXAM_DETAILS_API } from "@/constants";
-import { IGetExamDetailsAPIResponseType } from "@/types";
+import { IGetExamDetailsAPIResponseType, IQuestionData } from "@/types";
 import axios from "axios";
 
 const SYSTEM_PROMPT =
-  "Given the following question and options, return only the id of the correct option. Do not include any other information or explanations. if no option matches or any issue return null";
+  "Given the following question and options, return only the id of the correct option. Do not include any other information or explanations. if no option matches or any issue return return reason in short, question is stringifyed JSON object";
 export const removePTag = (str: string) =>
   str.replace("<p>", "").replace("</p>", "");
 
-export const generateAnswer = async (questionData: object) => {
-  const data = {
-    model: "gpt-4o-mini",
-    messages: [
-      {
-        role: "user",
-        content: SYSTEM_PROMPT + " " + JSON.stringify(questionData),
-      },
-    ],
-  };
+export const generateAnswer = async (
+  questionData: IQuestionData
+): Promise<string | null> => {
+  try {
+    const data = {
+      model: "gpt-4o",
+      messages: [
+        {
+          role: "user",
+          content: SYSTEM_PROMPT + " QUESTION: " + JSON.stringify(questionData),
+        },
+      ],
+    };
 
-  const response = await axios
-    .post("https://api.eduide.cc/v1/chat/completions", data)
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-
-  return response?.data?.choices?.[0]?.message?.content;
+    const response = await axios.post(
+      "https://api.eduide.cc/v1/chat/completions",
+      data
+    );
+    return response?.data?.choices?.[0]?.message?.content || null;
+  } catch (error) {
+    console.error("Error generating answer:", error);
+    return null;
+  }
 };
 
 export const getExamDetails = async (baseUrl: string, attemptId: string) => {

@@ -92,3 +92,24 @@ export interface IGetExamDetailsAPIResponseType {
   exam_models: IExamModalType[];
   student_exam: IStudentExamType;
 }
+
+export interface IQuestionData {
+  question: string;
+  questionImage: string;
+  options: {
+    option: string;
+    id: string;
+    optionImage: string;
+    optionImagePartial: string;
+  }[];
+  explanation: string;
+  explanationImage: string;
+}
+
+export interface IPromptDetails {
+  isGenerated: boolean;
+  isGenerating: boolean;
+  questionNumber: number;
+  optionId: string;
+  section: string;
+}

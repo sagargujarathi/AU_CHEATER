@@ -1,11 +1,127 @@
 import { KEY_TYPES } from "@/constants";
 import { extractDataFromUrl, generateAnswer, getExamDetails } from "@/helpers";
+import { IPromptDetails } from "@/types";
 
-let PROMPT_DETAILS = {
+let PROMPT_DETAILS: IPromptDetails = {
   isGenerated: false,
+  isGenerating: false,
   questionNumber: -1,
   optionId: "",
   section: "",
+};
+
+interface QuestionMetadata {
+  number: number;
+  section: string;
+  text: string;
+}
+
+const extractQuestionData = (): QuestionMetadata | null => {
+  try {
+    const questionText =
+      (document.getElementsByClassName("question-heading")[0] as HTMLDivElement)
+        ?.textContent || "";
+
+    const section =
+      document
+        .querySelector(".sidebar-brand-2")
+        ?.textContent?.replace("Section", "")
+        .trim() || "";
+
+    const questionNumber = Number(
+      questionText.match(/Ques (\d+) /)?.[1] || "0"
+    );
+
+    return {
+      number: questionNumber,
+      section,
+      text: questionText,
+    };
+  } catch (error) {
+    console.error("Error extracting question data:", error);
+    return null;
+  }
+};
+
+const handleGenerateAnswer = async (
+  questionData: QuestionMetadata,
+  examData: any
+) => {
+  // Return if already generating or generated for this question
+  if (PROMPT_DETAILS.isGenerating || 
+      (PROMPT_DETAILS.isGenerated && 
+       PROMPT_DETAILS.questionNumber === questionData.number)) {
+    return;
+  }
+
+  // Set generating state
+  PROMPT_DETAILS = {
+    isGenerating: true,
+    isGenerated: false,
+    questionNumber: questionData.number,
+    optionId: "",
+    section: questionData.section,
+  };
+
+  const sectionData = examData.find(
+    (item: any) => item.name === questionData.section
+  );
+  const question = sectionData?.questions?.[questionData.number - 1];
+
+  if (!question) {
+    PROMPT_DETAILS.isGenerating = false;
+    return;
+  }
+
+  const option = await generateAnswer(question);
+
+  PROMPT_DETAILS = {
+    isGenerated: !!option,
+    isGenerating: false,
+    questionNumber: questionData.number,
+    optionId: option || "",
+    section: questionData.section,
+  };
+};
+
+const handleAutoSelect = (questionData: QuestionMetadata) => {
+  if (
+    PROMPT_DETAILS.questionNumber === questionData.number &&
+    PROMPT_DETAILS.isGenerated
+  ) {
+    PROMPT_DETAILS.optionId.split(", ").forEach((item) => {
+      const input = document.querySelector(
+        `input[value=${item.replace('"', "")}]`
+      ) as HTMLInputElement;
+
+      if (input) input.click();
+    });
+  }
+};
+
+const handleKeyPress = async (
+  event: KeyboardEvent,
+  config: any,
+  examData: any
+) => {
+  const key = event.key.toUpperCase();
+  const questionData = extractQuestionData();
+
+  if (!questionData) return;
+
+  // Return if already processing this question
+  if (PROMPT_DETAILS.questionNumber === questionData.number) {
+    if (PROMPT_DETAILS.isGenerating) return;
+    if (PROMPT_DETAILS.isGenerated && key === config[KEY_TYPES.GENERATE_KEY]) return;
+  }
+
+  if (key === config[KEY_TYPES.GENERATE_KEY]) {
+    await handleGenerateAnswer(questionData, examData);
+  } else if (key === config[KEY_TYPES.AUTO_SELECT_KEY] && 
+             PROMPT_DETAILS.isGenerated && 
+             PROMPT_DETAILS.questionNumber === questionData.number) {
+    handleAutoSelect(questionData);
+  }
 };
 
 const loadScripts = async () => {
@@ -21,60 +137,9 @@ const loadScripts = async () => {
   // CHECK IF WE GOT DATA
   if (!ATTEMPT_ID || !EXAM_DATA) return;
 
-  window.addEventListener("keypress", async (event) => {
-    const key = event.key.toUpperCase();
-
-    const questionText =
-      (document.getElementsByClassName("question-heading")[0] as HTMLDivElement)
-        ?.textContent || "";
-
-    const section =
-      document
-        .querySelector(".sidebar-brand-2")
-        ?.textContent?.replace("Section", "")
-        .trim() || "";
-
-    const questionNumber = Number(
-      questionText.match(/Ques (\d+) /)?.[1] || "0"
-    );
-
-    //  THIS GENERATES THE ANSWER FOR THE QUESTION
-    if (key == CONFIGURATION_DATA.GENERATE_KEY) {
-      console.log("SECTION: ", section);
-      console.log("QUESTION NUMBER: ", questionNumber);
-
-      const option = await generateAnswer(
-        EXAM_DATA.find((item) => item.name === section)?.questions?.[
-          questionNumber - 1
-        ] || {}
-      );
-
-      if (!option) return;
-
-      PROMPT_DETAILS = {
-        isGenerated: true,
-        questionNumber: questionNumber,
-        optionId: option,
-        section,
-      };
-    }
-
-    // THIS AUTO CHECKS THE OPTION AFTER GENERATING THE ANSWER
-    if (key === CONFIGURATION_DATA.AUTO_SELECT_KEY) {
-      if (
-        PROMPT_DETAILS.questionNumber === questionNumber &&
-        PROMPT_DETAILS.isGenerated
-      ) {
-        PROMPT_DETAILS.optionId.split(", ").map((item) => {
-          const input = document.querySelector(
-            `input[value=${item.replace('"', "")}]`
-          ) as HTMLInputElement;
-
-          input.click();
-        });
-      }
-    }
-  });
+  window.addEventListener("keypress", (event) =>
+    handleKeyPress(event, CONFIGURATION_DATA, EXAM_DATA)
+  );
 };
 
 const initListeners = () => {
